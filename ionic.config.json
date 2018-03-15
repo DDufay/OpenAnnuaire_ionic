@@ -1,0 +1,8 @@
+{
+  "name": "Openannuaire_ionic",
+  "app_id": "d5209f1a",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
