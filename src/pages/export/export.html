@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="ios-menu-outline"></ion-icon>
+        </button>
+        <ion-title>
+            Export
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            CSV
+        </ion-card-header>
+        <ion-card-content>
+            <button class="button-download" ion-button block (click)="export('csv', true)">
+                <ion-icon ios="md-download" md="md-download"></ion-icon>
+                <span class="download-text">Jeu de données entier</span>
+            </button>
+            <hr>
+            <button class="button-download" ion-button block (click)="export('csv')">
+                <ion-icon ios="md-download" md="md-download"></ion-icon>
+                <span class="download-text">Les {{(nhits > 10000) ? "10 000 premiers":nhits| number:'':'fr' }} enregistrements</span>
+            </button>
+            <p class="infoCsv">Le CSV utilise le point-virgule (;) comme séparateur.</p>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            JSON
+        </ion-card-header>
+        <ion-card-content>
+            <button class="button-download"  ion-button block (click)="export('json', true)">
+                <ion-icon ios="md-download" md="md-download"></ion-icon>
+                <span class="download-text"> Jeu de données entier</span>
+            </button>
+            <hr>
+            <button class="button-download" ion-button block (click)="export('json')">
+                <ion-icon ios="md-download" md="md-download"></ion-icon>
+                <span class="download-text">Les {{(nhits > 10000) ? "10 000 premiers":nhits| number:'':'fr' }} enregistrements</span>
+            </button>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            Excel
+        </ion-card-header>
+        <ion-card-content>
+            <button class="button-download" ion-button block (click)="export('xls', true)">
+                <ion-icon ios="md-download" md="md-download"></ion-icon>
+                <span class="download-text">Jeu de données entier</span>
+            </button>
+            <hr>
+            <button class="button-download" ion-button block (click)="export('xls')">
+                <ion-icon ios="md-download" md="md-download"></ion-icon>
+                <span class="download-text">Les {{(nhits > 10000) ? "10 000 premiers":nhits| number:'':'fr' }} enregistrements</span>
+            </button>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,10 @@
+@import "../../theme/colors";
+#map-detail-companies {
+  width: calc(100% - 24px);
+  height: 40%;
+  margin: 12px;
+  margin-bottom: -12px;
+}
+.address {
+  max-width: 280px;
+}

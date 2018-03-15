@@ -1,0 +1,14 @@
+@import "../../theme/colors";
+
+.item-icon {
+    position: absolute;
+    right: 12px;
+    font-size: 24px;
+    color: $grey;
+}
+
+button {
+    &.item-ios:not([detail-none]) .item-inner {
+        background: none;
+    }
+}

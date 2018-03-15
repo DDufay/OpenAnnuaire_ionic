@@ -1,0 +1,23 @@
+page-filter {
+  ion-item {
+    .item-inner {
+      padding: 0 !important;
+      ion-select {
+        width: 100%;
+        max-width: 100%;
+
+        &.select-md {
+          padding: 13px 20px;
+        }
+
+        &.select-ios {
+          padding: 13px 20px;
+        }
+      }
+    }
+  }
+}
+
+ng2-menu-item {
+  font-size: 14px;
+}

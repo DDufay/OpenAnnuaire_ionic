@@ -1,0 +1,18 @@
+<div *ngIf="type === 'text'">
+    <ion-searchbar #company_name placeholder="Nom de l'entreprise" *ngIf="!multiple"
+                   (change)="add(company_name.value)" (ionClear)="remove(company_name.value)">
+    </ion-searchbar>
+</div>
+
+<div *ngIf="multiple && type === 'selectObject'">
+    <tag-input [(ngModel)]="values" [placeholder]="paramLabel" [secondaryPlaceholder]="paramLabel"
+               (onAdd)="add($event)" (onRemove)="remove($event)" [onlyFromAutocomplete]="true">
+        <tag-input-dropdown [keepOpen]="false" [showDropdownIfEmpty]="true" [autocompleteItems]="options"></tag-input-dropdown>
+    </tag-input>
+</div>
+
+<div *ngIf="multiple && type === 'text'">
+    <tag-input [(ngModel)]="values" [separatorKeyCodes]="[32,188]" [placeholder]="paramLabel"
+               [secondaryPlaceholder]="paramLabel" (onAdd)="add($event)" (onRemove)="remove($event)">
+    </tag-input>
+</div>

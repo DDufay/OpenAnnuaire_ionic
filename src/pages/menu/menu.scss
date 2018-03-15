@@ -1,0 +1,196 @@
+@import "../../theme/colors";
+
+.menu-inner {
+  .toolbar, .toolbar-ios ion-title {
+    padding: 0;
+
+    .toolbar-title {
+      overflow: initial;
+      text-align: center;
+    }
+  }
+
+  .scroll-content {
+    overflow-y: auto;
+
+    ion-list {
+      display: flex;
+      flex-direction: column;
+      .menu-categ {
+        padding: 10px 0 0 10px;
+        border-bottom: 2px solid $grey;
+
+        &-title {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-weight: 700;
+          color: $grey;
+
+          div {
+            font-size: 15px;
+
+            .icon {
+              font-size: 20px;
+            }
+          }
+
+          button {
+            background-color: transparent;
+            font-size: 20px;
+          }
+        }
+        &-filter {
+          display: flex;
+        }
+        .count-cards {
+          margin-left: auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+        }
+      }
+      .categ {
+        &-facet {
+          border-left: 6px solid $green;
+          &-button {
+            &-count {
+              color: $white;
+              border: 1px solid $green;
+              background-color: $green;
+              border-radius: 15px;
+              padding: 0 10px;
+              margin-bottom: 60px;
+            }
+          }
+        }
+        &-type {
+          border-left: 6px solid $green;
+          .ng2-tag-input{
+            border-bottom: none !important;
+          }
+          &-button {
+            &:hover {
+              color: $green;
+            }
+            &-count {
+              color: $white;
+              border: 1px solid $green;
+              background-color: $green;
+              border-radius: 15px;
+              padding: 0 10px;
+              margin-bottom: 60px;
+            }
+
+          }
+        }
+        &-depet {
+          border-left: 6px solid $dark-blue;
+          .ng2-tag-input{
+            border-bottom: none !important;
+          }
+          &-button {
+            &:hover {
+              color: $dark-blue;
+            }
+            &-count {
+              color: $white;
+              border: 1px solid $dark-blue;
+              background-color: $dark-blue;
+              border-radius: 15px;
+              padding: 0 10px;
+              margin-bottom: 60px;
+            }
+
+          }
+        }
+        &-township {
+          border-left: 6px solid $blue;
+          .ng2-tag-input{
+            border-bottom: none !important;
+          }
+          &-button {
+            &:hover {
+              color: $blue;
+            }
+            &-count {
+              color: $white;
+              border: 1px solid $blue;
+              background-color: $blue;
+              border-radius: 15px;
+              padding: 0 10px;
+              margin-bottom: 60px;
+            }
+
+          }
+        }
+        &-nj {
+          border-left: 6px solid $orange;
+          .ng2-tag-input{
+            border-bottom: none !important;
+          }
+          &-button {
+            &:hover {
+              color: $orange;
+            }
+            &-count {
+              color: $white;
+              border: 1px solid $orange;
+              background-color: $orange;
+              border-radius: 15px;
+              padding: 0 10px;
+              margin-bottom: 60px;
+            }
+
+          }
+        }
+        &-teffet {
+          border-left: 6px solid $green;
+          .ng2-tag-input{
+            border-bottom: none !important;
+          }
+          &-button {
+            &:hover {
+              color: $green;
+            }
+            &-count {
+              color: $white;
+              border: 1px solid $green;
+              background-color: $green;
+              border-radius: 15px;
+              padding: 0 10px;
+              margin-bottom: 60px;
+            }
+
+          }
+        }
+        &-tca {
+          border-left: 6px solid $blue;
+          .ng2-tag-input{
+            border-bottom: none !important;
+          }
+          &-button {
+            &:hover {
+              color: $blue;
+            }
+            &-count {
+              color: $white;
+              border: 1px solid $blue;
+              background-color: $blue;
+              border-radius: 15px;
+              padding: 0 10px;
+              margin-bottom: 60px;
+            }
+
+          }
+        }
+      }
+    }
+  }
+  tag {
+    max-width: 200px;
+    min-width: 112px;
+    text-align: center;
+    margin-bottom: 18px !important;
+  }
+}

@@ -1,0 +1,152 @@
+<ion-menu type="overlay" [content]="content">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>
+                {{ nhits| number:'':'fr' }}
+                <span>résultats</span>
+            </ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <div class="menu-categ categ-type">
+                <div class="menu-categ-title">
+                    <div>
+                        Catégories d'entreprises
+                    </div>
+                </div>
+                <div class="menu-categ-filter">
+                    <page-filter
+                            paramName="categorie"
+                            paramLabel="Catégories"
+                            type="selectObject"
+                            optionIndex="categories"
+                            #categ
+                    >
+                    </page-filter>
+                    <div class="count-cards">
+                        <div class="categ-facet-button-count" *ngFor="let item of categ.filter.values">
+                            {{ displayFacetOnFilter(categ.paramName, item)| number:'':'fr' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-categ categ-depet">
+                <div class="menu-categ-title">
+                    <div>
+                        Département
+                    </div>
+                </div>
+                <div class="menu-categ-filter">
+                    <page-filter
+                            paramName="depet"
+                            paramLabel="Département"
+                            type="selectObject"
+                            optionIndex="depet"
+                            [facetsCount]="facetCount[depet.paramName]"
+                            #depet>
+                    </page-filter>
+                    <div class="count-cards">
+                        <div class="categ-facet-button-count" *ngFor="let item of depet.filter.values">
+                            {{ displayFacetOnFilter(depet.paramName, item)| number:'':'fr' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-categ categ-township">
+                <div class="menu-categ-title">
+                    <div>
+                        Commune
+                    </div>
+                </div>
+                <div class="menu-categ-filter">
+                    <page-filter
+                            paramName="libcom"
+                            paramLabel="Commune"
+                            type="selectObject"
+                            optionIndex="township"
+                            #township
+                    >
+                    </page-filter>
+                    <div class="count-cards">
+                    <div class="categ-facet-button-count" *ngFor="let item of township.filter.values">
+                        {{ displayFacetOnFilter(township.paramName, item)| number:'':'fr' }}
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="menu-categ categ-nj">
+                <div class="menu-categ-title">
+                    <div>
+                        Statut juridique
+                    </div>
+                </div>
+                <div class="menu-categ-filter">
+                    <page-filter
+                            paramName="nj"
+                            paramLabel="Statut juridique"
+                            type="selectObject"
+                            optionIndex="nj"
+                            #nj
+                    >
+                    </page-filter>
+                    <div class="count-cards">
+                    <div class="categ-facet-button-count" *ngFor="let item of nj.filter.values">
+                        {{ displayFacetOnFilter(nj.paramName, item)| number:'':'fr' }}
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="menu-categ categ-teffet">
+                <div class="menu-categ-title">
+                    <div>
+                        Effectifs
+                    </div>
+                </div>
+                <div class="menu-categ-filter">
+                    <page-filter
+                            class="list-item__content"
+                            paramName="tefet"
+                            paramLabel="Effectifs"
+                            type="selectObject"
+                            optionIndex="salaries"
+                            #teffet
+                    >
+                    </page-filter>
+                    <div class="count-cards">
+                        <div class="categ-facet-button-count" *ngFor="let item of teffet.filter.values">
+                            {{ displayFacetOnFilter(teffet.paramName, item)| number:'':'fr' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-categ categ-tca">
+                <div class="menu-categ-title">
+                    <div>
+                        Chiffre d'affaires
+                    </div>
+                </div>
+                <div class="menu-categ-filter">
+                    <page-filter
+                            paramName="tca"
+                            paramLabel="Chiffre d'affaires"
+                            type="selectObject"
+                            optionIndex="tca"
+                            #tca
+                    >
+                    </page-filter>
+                    <div class="count-cards">
+                        <div class="categ-facet-button-count" *ngFor="let item of tca.filter.values">
+                            {{ displayFacetOnFilter(tca.paramName, item)| number:'':'fr' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+        <ion-icon name="ios-help-circle-outline"></ion-icon>
+        Ajoutez et cumulez les critères de recherche pour affiner votre recherche
+        <hr>
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>
