@@ -7,7 +7,8 @@ import { CompanyInterface } from './model/company-interface';
 import { Company } from './model/company';
 import { QueryBuilderService } from './query-builder.service';
 import { Filter } from './model/filter';
-import { Loading, LoadingController } from 'ionic-angular';
+import { Loading, LoadingController, AlertController } from 'ionic-angular';
+import { Network } from "@ionic-native/network";
 
 @Injectable()
 export class RetrieveCompaniesService {
@@ -22,6 +23,7 @@ export class RetrieveCompaniesService {
     facetsParams: string[] = [];
     facets: {};
     nhits = 0;
+    isConnected: boolean = navigator.onLine;
 
     // Object for all params of the search
     filters: Filter[] = [];
@@ -37,7 +39,10 @@ export class RetrieveCompaniesService {
 
     constructor(private http: HttpClient,
                 private queryBuilder: QueryBuilderService,
-                public loadingCtrl: LoadingController) {
+                public loadingCtrl: LoadingController,
+                private network: Network,
+                private alertCtrl: AlertController
+    ) {
         // Subscribe new filter added
         this.onFilterCompanies.subscribe((filter: Filter) => {
             if (!this.filters.some(x => x === filter)) {
@@ -59,38 +64,44 @@ export class RetrieveCompaniesService {
         this.onGetFacets.emit(this.facets);
         this.loading.dismissAll();
     }
+
     retrieveCompanies() {
-        this.createLoader();
-        this.onQuery.emit(this.queryBuilder.buildQuery(this.filters));
-        return this.http.get(this._url, {
-            params: {
-                dataset: RetrieveCompaniesService.DATASET,
-                lang: RetrieveCompaniesService.LANG,
-                rows: this.rows.toString(),
-                facet: this.facetsParams,
-                start: this.start.toString(),
-                q: this.queryBuilder.buildQuery(this.filters),
-            },
-        }).map((res) => res as FirmApiInterface).subscribe((response) => {
-            this.nhits = response.nhits;
-            this.facets = response.facet_groups;
-            response.records.forEach((record: CompanyInterface) => {
-                this.companies.push(new Company(
-                    record.fields.siren,
-                    record.fields.l1_normalisee,
-                    record.fields.l4_normalisee,
-                    record.fields.codpos,
-                    record.fields.libcom,
-                    record.fields.categorie,
-                    record.fields.libapen,
-                    record.fields.libtefet,
-                    record.fields.dcret,
-                    record.fields.coordonnees,
-                    record.fields.libapet,
-                ));
+        this.checkConnexion();
+        if (this.isConnected) {
+            this.createLoader();
+            this.onQuery.emit(this.queryBuilder.buildQuery(this.filters));
+            return this.http.get(this._url, {
+                params: {
+                    dataset: RetrieveCompaniesService.DATASET,
+                    lang: RetrieveCompaniesService.LANG,
+                    rows: this.rows.toString(),
+                    facet: this.facetsParams,
+                    start: this.start.toString(),
+                    q: this.queryBuilder.buildQuery(this.filters),
+                },
+            }).map((res) => res as FirmApiInterface).subscribe((response) => {
+                this.nhits = response.nhits;
+                this.facets = response.facet_groups;
+                response.records.forEach((record: CompanyInterface) => {
+                    this.companies.push(new Company(
+                        record.fields.siren,
+                        record.fields.l1_normalisee,
+                        record.fields.l4_normalisee,
+                        record.fields.codpos,
+                        record.fields.libcom,
+                        record.fields.categorie,
+                        record.fields.libapen,
+                        record.fields.libtefet,
+                        record.fields.dcret,
+                        record.fields.coordonnees,
+                        record.fields.libapet,
+                    ));
+                });
+                this.dispatch();
             });
-            this.dispatch();
-        });
+        } else {
+            this.createAlertCantConnect();
+        }
     }
 
     // Fetch API and emit onGetCompanies event
@@ -126,11 +137,26 @@ export class RetrieveCompaniesService {
         return this.retrieveCompanies();
     }
 
+    checkConnexion(): void {
+        this.network.onDisconnect().subscribe(
+            () => this.isConnected = false,
+        );
+    }
+
+    createAlertCantConnect(): void {
+        let alert = this.alertCtrl.create({
+            title: 'Pas de connexion !',
+            subTitle: 'Impossible de se connecter à l\'application. Veuillez vous connecter',
+            enableBackdropDismiss: false,
+        });
+        alert.present();
+    }
+
     createLoader(): void {
         this.loading = this.loadingCtrl.create({
             spinner: 'crescent',
             content: 'Chargement en cours...',
-    });
+        });
         this.loading.present();
     }
 }

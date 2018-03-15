@@ -24,6 +24,7 @@ import { FileTransfer } from "@ionic-native/file-transfer";
 import { FilterPage } from "../pages/filter/filter";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TagInputModule } from "ngx-chips";
+import { Network } from "@ionic-native/network";
 
 registerLocaleData(localeFr, 'fr');
 @NgModule({
@@ -67,6 +68,7 @@ registerLocaleData(localeFr, 'fr');
         FilterPage,
         TagInputModule,
         BrowserAnimationsModule,
+        Network,
         { provide: ErrorHandler, useClass: IonicErrorHandler }
     ]
 })

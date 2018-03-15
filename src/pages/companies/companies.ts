@@ -10,10 +10,13 @@ import { DetailCompanyPage } from '../detail-company/detail-company';
 })
 export class CompaniesPage implements OnInit {
     companies: Company[];
-    constructor(public navCtrl: NavController,
-                public navParams: NavParams,
-                private retrieveCompaniesService: RetrieveCompaniesService,
-                public loadingCtrl: LoadingController) {
+
+    constructor(
+        public navCtrl: NavController,
+        public navParams: NavParams,
+        private retrieveCompaniesService: RetrieveCompaniesService,
+        public loadingCtrl: LoadingController
+    ) {
         this.retrieveCompaniesService.onGetCompanies.subscribe((companies: Company[]) => this.companies = companies);
     }
 

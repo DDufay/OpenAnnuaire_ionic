@@ -8,12 +8,10 @@ import { CompaniesPage } from '../companies/companies';
     templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
     companiesRoot = CompaniesPage;
     mapRoot = MapPage;
     exportRoot = ExportPage;
 
     constructor() {
-
     }
 }
