@@ -74,11 +74,13 @@ export class ExportService {
         };
         if (this.platform.is('android')) {
             this.fileTransfer.download(this._url + ExportService.CSV + this.query + this.header, this.file.externalDataDirectory + this.filename + '.csv').then((entry) => {
+                window.alert('Export réussi le fichier ce trouve dans : ' + entry.toURL())
             }, (error) => {
                 window.alert('erreur export : ' + error.message);
             });
         } else if (this.platform.is('ios')) {
             this.fileTransfer.download(this._url + ExportService.CSV + this.query + this.header, this.file.documentsDirectory + this.filename + '.csv').then((entry) => {
+                window.alert('Export réussi le fichier ce trouve dans : ' + entry.toURL())
             }, (error) => {
                 window.alert('erreur export : ' + error.message);
             });
@@ -118,11 +120,13 @@ export class ExportService {
     exportForMobile(format, data) {
         if (this.platform.is('android')) {
             this.fileTransfer.download(this._url + format + this.query + this.header, this.file.externalDataDirectory + this.filename + '.' + format).then((entry) => {
+                window.alert('Export réussi le fichier ce trouve dans : ' + entry.toURL());
             }, (error) => {
                 window.alert('erreur export : ' + error.message);
             });
         } else if (this.platform.is('ios')) {
             this.fileTransfer.download(this._url + format + this.query + this.header, this.file.documentsDirectory + this.filename + '.' + format).then((entry) => {
+                window.alert('Export réussi le fichier ce trouve dans : ' + entry.toURL());
             }, (error) => {
                 window.alert('erreur export : ' + error.message);
             });

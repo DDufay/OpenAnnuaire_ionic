@@ -13,6 +13,7 @@ export class MapPage implements OnInit {
     @ViewChild('map') mapRef: ElementRef;
     companies: Company[];
     alreadyFiltered = false;
+    currentModal = null;
 
     constructor(public navCtrl: NavController, private retrieveCompaniesService: RetrieveCompaniesService) {
         this.retrieveCompaniesService.onFilterCompanies.subscribe(() => {
@@ -45,12 +46,16 @@ export class MapPage implements OnInit {
             // loop on companies to set markers and to display info of company on google map
             this.companies.forEach((company: Company) => {
                 if (undefined !== company.coordinates) {
-                    let latLng = new google.maps.LatLng(company.coordinates[0], company.coordinates[1]);
+                    const latLng = new google.maps.LatLng(company.coordinates[0], company.coordinates[1]);
                     // Content of infoWindow
-                    let content = "Nom : " + company.name + "<hr>Adresse : " + company.address + "<br>Code postal : " + company.postal_code + "<br>Ville : " + company.city;
-                    let infoWindow = this.infoWindow(content);
-                    let marker = this.addMarker(latLng, map, company.name);
-                    marker.addListener('click', function () {
+                    const content = "Nom : " + company.name + "<hr>Adresse : " + company.address + "<br>Code postal : " + company.postal_code + "<br>Ville : " + company.city;
+                    const infoWindow = this.infoWindow(content);
+                    const marker = this.addMarker(latLng, map, company.name);
+                    marker.addListener('click', () => {
+                        if (this.currentModal !== null) {
+                            this.currentModal.close();
+                        }
+                        this.currentModal = infoWindow;
                         infoWindow.open(map, marker);
                     });
                 }

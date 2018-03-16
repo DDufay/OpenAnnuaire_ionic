@@ -22,7 +22,7 @@
         <ion-item>
             <ion-icon name="people" item-start large></ion-icon>
             <h2>{{ company.name }}</h2>
-            <p class="address">{{ company.address }} {{ company.postal_code }} {{ company.city }}</p>
+            <p class="address">{{ company.address  + company.postal_code + company.city|slice:0:30 }} ...</p>
         </ion-item>
     </ion-card>
 </ion-content>

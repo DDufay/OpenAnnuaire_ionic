@@ -25,6 +25,7 @@ import { FilterPage } from "../pages/filter/filter";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TagInputModule } from "ngx-chips";
 import { Network } from "@ionic-native/network";
+import { SlidesPage } from "../pages/slides/slides";
 
 registerLocaleData(localeFr, 'fr');
 @NgModule({
@@ -37,6 +38,7 @@ registerLocaleData(localeFr, 'fr');
         DetailCompanyPage,
         MenuPage,
         FilterPage,
+        SlidesPage
     ],
     imports: [
         BrowserModule,
@@ -55,6 +57,7 @@ registerLocaleData(localeFr, 'fr');
         DetailCompanyPage,
         MenuPage,
         FilterPage,
+        SlidesPage
     ],
     providers: [
         StatusBar,
